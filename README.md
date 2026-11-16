@@ -3,7 +3,6 @@
 An in-game creative menu for **My Dystopian Robot Girlfriend**. Press **F10** in game.
 
 It is a [BepInEx](https://github.com/BepInEx/BepInEx) plugin (IL2CPP), so **BepInEx is required**.
-Single-player only.
 
 ## Features
 
