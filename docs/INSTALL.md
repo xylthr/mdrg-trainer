@@ -1,33 +1,45 @@
-# MDRG Trainer: Install Guide (BepInEx)
+# MDRG Trainer: Install Guide
 
-An in-game trainer / creative menu for **My Dystopian Robot Girlfriend**. It runs as a **BepInEx plugin**,
-so **BepInEx is required**: it is what loads the trainer into the game.
+An in-game trainer / creative menu for **My Dystopian Robot Girlfriend**. It is a **BepInEx plugin**, so
+**BepInEx is required**: it is what loads the trainer into the game. BepInEx is a separate download
+(steps below), and this download contains only the trainer plugin.
 
 - **Tested on:** game version 0.97.12, Unity 6000.3.8f1, Windows 64-bit, BepInEx 6.0.0-be.793 (IL2CPP, x64)
 - **Single-player only.** Back up your saves before using it (see "Back up your saves" below).
 - A game update can break the trainer. If something stops working after an update, wait for a new version.
+- **BepInEx only, not MelonLoader.** Some other external mods for this game use MelonLoader, which is a separate system.
+  Running both loaders in the same game can cause conflicts, so back up your game folder before mixing them.
 
 ---
 
-## 1. Which download do I need?
+## 1. Do I already have BepInEx?
 
-| You have... | Download | What to do |
-|---|---|---|
-| **No BepInEx yet** (most people) | **Trainer + BepInEx** | Extract it into the game folder. Done. |
-| **BepInEx 6 IL2CPP already** (from other mods) | **Trainer only** | Put `MdrgTrainer.dll` into `BepInEx/plugins/`. |
-| **BepInEx 5 / Mono** | Not compatible | This game is IL2CPP. You need BepInEx 6 IL2CPP. |
+Open your game folder (the one with `My Dystopian Robot Girlfriend.exe`).
 
-Not sure? Look in your game folder. If you have a `BepInEx` folder **and** a `winhttp.dll` next to the game's `.exe`, you already have BepInEx.
-Check `BepInEx/LogOutput.log`: the first lines say which BepInEx version it is.
+- You see a **`BepInEx` folder and a `winhttp.dll`** next to the `.exe`: you probably have it. Open
+  `BepInEx/LogOutput.log`; the first lines say which version it is. You need **BepInEx 6 IL2CPP**. Go to step 3.
+- You see **neither**: do step 2 first.
+- BepInEx **5 / Mono** does not work. This game is IL2CPP, so you need BepInEx 6 IL2CPP.
 
 ---
 
-## 2. Install (no BepInEx yet)
+## 2. Install BepInEx (skip if you already have it)
 
 1. **Close the game.**
-2. Find your game folder: the one that contains `My Dystopian Robot Girlfriend.exe`.
-3. Extract the **Trainer + BepInEx** zip **into that folder**. Say yes to merging folders.
-4. You should now see these next to the `.exe`:
+2. Download **`BepInEx-Unity.IL2CPP-win-x64-6.0.0-be.793+dbc82f0.zip`** from the official BepInEx builds site:
+   [direct link](https://builds.bepinex.dev/projects/bepinex_be/793/BepInEx-Unity.IL2CPP-win-x64-6.0.0-be.793%2Bdbc82f0.zip)
+   (all builds: https://builds.bepinex.dev/projects/bepinex_be).
+3. Extract the zip **into your game folder**, next to the `.exe`. Say yes to merging folders.
+4. You should now see `winhttp.dll`, `doorstop_config.ini`, a `dotnet` folder and a `BepInEx` folder next to the `.exe`.
+
+---
+
+## 3. Install the trainer
+
+1. Close the game.
+2. Copy **`MdrgTrainer.dll`** from this download into the **`BepInEx/plugins/`** folder inside your game folder.
+   If the `plugins` folder isn't there yet, create it.
+3. **Start the game normally** (the same `.exe` you always use). There is no separate launcher.
 
 ```
 My Dystopian Robot Girlfriend/
@@ -42,22 +54,10 @@ My Dystopian Robot Girlfriend/
       └─ MdrgTrainer.dll    <- the trainer
 ```
 
-5. **Start the game normally** (the same `.exe` you always use). There is no separate launcher.
-
 ### The first launch is slow
-The first time BepInEx runs, it builds files for your copy of the game (this takes **about a minute**
+If BepInEx was just installed, its first launch builds files for your copy of the game (this takes **about a minute**
 and the game may look frozen on a black screen). That is normal. **Don't close it.**
 Later launches start at the normal speed.
-
----
-
-## 3. Install (BepInEx already installed)
-
-1. Close the game.
-2. Copy `MdrgTrainer.dll` into `BepInEx/plugins/` inside your game folder.
-3. Start the game.
-
-Do **not** extract the full bundle over an existing BepInEx: it would overwrite your loader files.
 
 ---
 
@@ -116,10 +116,10 @@ C:\Users\<you>\AppData\LocalLow\IncontinentCell\My Dystopian Robot Girlfriend\Sa
 - Make sure you started the game with the normal `.exe`, from the folder you installed into.
 
 **Black screen for a long time on first launch**
-- Wait about a minute. It is generating files on the first run only.
+- Wait about a minute. BepInEx generates files on its first run only.
 
 **Antivirus flags `winhttp.dll`**
-- It is BepInEx's loader (Unity Doorstop), which works by proxying that DLL, and some antivirus tools flag that. It comes from the official BepInEx project. You can add the game folder to your exclusions, or skip the bundle and install BepInEx yourself from the official site.
+- It is BepInEx's loader (Unity Doorstop), which works by proxying that DLL, and some antivirus tools flag that. It comes from the official BepInEx project. You can add the game folder to your exclusions.
 
 **It worked, then stopped after a game update**
 - The trainer reads the game's internals, so updates can break it. Remove `MdrgTrainer.dll` from `BepInEx/plugins/` and wait for an updated version. If the game won't start, also delete the folder `BepInEx/interop/` so it is rebuilt on the next launch.
@@ -142,7 +142,6 @@ C:\Users\<you>\AppData\LocalLow\IncontinentCell\My Dystopian Robot Girlfriend\Sa
 
 ## Credits
 
-- **BepInEx** (https://github.com/BepInEx/BepInEx): the mod loader. Builds: https://builds.bepinex.dev/projects/bepinex_be
-  Use the file named `BepInEx-Unity.IL2CPP-win-x64-6.0.0-be.793+dbc82f0.zip`.
+- **BepInEx** (https://github.com/BepInEx/BepInEx): the mod loader, downloaded separately from https://builds.bepinex.dev/projects/bepinex_be.
 - Uses HarmonyX and Il2CppInterop, which are part of BepInEx.
 - Trainer by **Xyl'thr**. Not affiliated with the game's developer.

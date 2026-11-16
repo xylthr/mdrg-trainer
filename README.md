@@ -17,12 +17,14 @@ Single-player only.
 
 ## Install
 
-Download the latest zip from the [Releases](../../releases/latest) page:
+This download is **only the plugin**. BepInEx is a separate download.
 
-| Download | Use it if |
-|---|---|
-| `MDRG-Trainer-<version>-with-BepInEx.zip` | you do not have BepInEx yet: extract it into the game folder and start the game |
-| `MDRG-Trainer-<version>-plugin-only.zip` | you already have BepInEx 6 IL2CPP: put `MdrgTrainer.dll` into `BepInEx/plugins/` |
+1. **Get BepInEx 6 IL2CPP** (skip if you already have it): download
+   [`BepInEx-Unity.IL2CPP-win-x64-6.0.0-be.793+dbc82f0.zip`](https://builds.bepinex.dev/projects/bepinex_be/793/BepInEx-Unity.IL2CPP-win-x64-6.0.0-be.793%2Bdbc82f0.zip)
+   from the official BepInEx builds site and extract it into the game folder, next to `My Dystopian Robot Girlfriend.exe`.
+2. **Get the plugin:** download `MDRG-Trainer-<version>-plugin-only.zip` from the [Releases](../../releases/latest) page and put
+   `MdrgTrainer.dll` into the game's `BepInEx/plugins/` folder.
+3. Start the game. The first launch after installing BepInEx takes about a minute. Press **F10** in game.
 
 Full steps, troubleshooting and uninstall are in [docs/INSTALL.md](docs/INSTALL.md).
 
