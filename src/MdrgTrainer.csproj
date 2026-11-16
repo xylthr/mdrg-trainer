@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>MdrgTrainer</AssemblyName>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <OutputPath>bin\</OutputPath>
+
+    <!--
+      Point this at your game folder: the one that contains "My Dystopian Robot Girlfriend.exe", with
+      BepInEx 6 IL2CPP installed and the game started once (that first launch creates BepInEx\interop).
+      Pass it on the command line:  dotnet build -c Release -p:GameDir="D:\Games\My Dystopian Robot Girlfriend"
+    -->
+    <GameDir Condition="'$(GameDir)' == ''">C:\Games\My Dystopian Robot Girlfriend</GameDir>
+    <BepInEx>$(GameDir)\BepInEx</BepInEx>
+  </PropertyGroup>
+
+  <Target Name="CheckGameDir" BeforeTargets="ResolveAssemblyReferences" Condition="!Exists('$(BepInEx)\interop\GameAssembly.dll')">
+    <Error Text="Cannot find $(BepInEx)\interop\GameAssembly.dll. Set GameDir to your game folder (with BepInEx installed and the game started once): dotnet build -c Release -p:GameDir=&quot;D:\Games\My Dystopian Robot Girlfriend&quot;" />
+  </Target>
+
+  <ItemGroup>
+    <Reference Include="$(BepInEx)\core\BepInEx.Core.dll" Private="false" />
+    <Reference Include="$(BepInEx)\core\BepInEx.Unity.IL2CPP.dll" Private="false" />
+    <Reference Include="$(BepInEx)\core\BepInEx.Unity.Common.dll" Private="false" />
+    <Reference Include="$(BepInEx)\core\Il2CppInterop.Runtime.dll" Private="false" />
+    <Reference Include="$(BepInEx)\core\Il2CppInterop.Common.dll" Private="false" />
+    <Reference Include="$(BepInEx)\core\0Harmony.dll" Private="false" />
+    <Reference Include="$(BepInEx)\interop\GameAssembly.dll" Private="false" />
+    <Reference Include="$(BepInEx)\interop\Il2Cppmscorlib.dll" Private="false" />
+    <Reference Include="$(BepInEx)\interop\UnityEngine.CoreModule.dll" Private="false" />
+    <Reference Include="$(BepInEx)\interop\UnityEngine.IMGUIModule.dll" Private="false" />
+    <Reference Include="$(BepInEx)\interop\UnityEngine.TextRenderingModule.dll" Private="false" />
+    <Reference Include="$(BepInEx)\interop\UnityEngine.UI.dll" Private="false" />
+    <Reference Include="$(BepInEx)\interop\IC.UI.dll" Private="false" />
+  </ItemGroup>
+</Project>
